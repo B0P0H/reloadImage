@@ -1,25 +1,25 @@
 {
-	"name": "Reload Image",
-	"description": "Reload image using context menu.",
-	"icons": {
-		"128": "img/128.png"
-	},
-	"manifest_version": 2,
-	"homepage_url": "https://github.com/mubaidr/reloadImage",
-	"version": "1.0",
-	"background": {
-		"persistent": true,
-		"scripts": ["js/background.js"]
-	},
-	"content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": ["js/myscript.js"]
-		}
-	],
-	"permissions": ["contextMenus", "tabs"],
-	"developer": {
-		"url": "https://github.com/mubaidr",
-		"name": "mubaidr"
-	}
+    "name": "Reload Images",
+    "description": "Reload images in Tab/Window using context menu.",
+    "icons": {
+        "128": "img/128.png"
+    },
+    "manifest_version": 2,
+    "homepage_url": "https://github.com/mubaidr/reloadImage",
+    "version": "1.5",
+    "background": {
+        "persistent": true,
+        "scripts": ["js/background.js"]
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["js/myscript.js"]
+        }
+    ],
+    "permissions": ["contextMenus", "tabs"],
+    "developer": {
+        "url": "https://github.com/mubaidr",
+        "name": "mubaidr"
+    }
 }

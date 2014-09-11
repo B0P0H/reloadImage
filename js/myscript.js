@@ -1,30 +1,30 @@
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-	var rand = Math.random();
-	var p = "?reload=" + rand;
-	switch (request.info.menuItemId) {
-	case "one":
-		if (clickedEl.src.indexOf('?') != -1) {
-			p = "&reload=" + rand;
-		}
-		clickedEl.src += p;
-		break;
-	case "all":
-		var imgs = document.getElementsByTagName("img");
-		for (var i = 0; i < imgs.length; i++) {
-			if (imgs[i].src.indexOf('?') != -1) {
-				p = "&reload=" + rand;
-			} else {
-				p = "?reload=" + rand;
-			}
-			imgs[i].src += p;
-		}
-		break;
-	}
-});
-var clickedEl = null;
-document.addEventListener("mousedown", function (event) {
-	//right click
-	if (event.button == 2) {
-		clickedEl = event.target;
-	}
-}, true);
+(function () {
+    "use strict";
+    /*global chrome, console*/
+    var clickedEl = null;
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+        var append = "reload=" + Math.random(),
+            imgs,
+            i;
+        switch (request.info) {
+        case "one":
+            append += clickedEl.src.indexOf('?') === -1 ? "?" : "&";
+            clickedEl.src += append;
+            break;
+        case "all":
+            imgs = document.getElementsByTagName("img");
+            i = 0;
+            for (i; i < imgs.length; i += 1) {
+                append += imgs[i].src.indexOf('?') === -1 ? "?" : "&";
+                imgs[i].src += append;
+            }
+            break;
+        }
+    });
+
+    document.addEventListener("mousedown", function (event) {
+        if (event.button === 2) {
+            clickedEl = event.target;
+        }
+    }, true);
+}());
