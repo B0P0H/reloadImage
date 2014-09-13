@@ -35,7 +35,7 @@
                 windowId: chrome.windows.WINDOW_ID_CURRENT
             }, function (tabs) {
                 var i = 0;
-                for (i; i < tabs.length; i += 1) {
+                for (i; i < tabs.length; i = i + 1) {
                     send(tabs[i].id, "all");
                 }
             });

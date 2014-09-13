@@ -17,7 +17,7 @@
         } else {
             imgs = document.getElementsByTagName('img');
         }
-        for (i; i < imgs.length; i += 1) {
+        for (i; i < imgs.length; i = i + 1) {
             res = checkSrc(imgs[i].src);
             if (res) {
                 imgs[i].src += res + append;
