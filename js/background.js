@@ -2,7 +2,7 @@
     "use strict";
     /*global chrome, console*/
     chrome.contextMenus.create({
-        "title": "Reload Image",
+        "title": "Reload this Image",
         "contexts": ["image"],
         "id": "one"
     });
