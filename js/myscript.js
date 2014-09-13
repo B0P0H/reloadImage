@@ -27,7 +27,7 @@
     });
 
     document.addEventListener('mousedown', function (event) {
-        if (event.button === 2 && event.target === 'img') {
+        if (event.button === 2 && event.target.tagName === 'IMG') {
             clickedEl = event.target;
         }
     }, true);
