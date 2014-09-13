@@ -1,29 +1,33 @@
 (function () {
-    "use strict";
+    'use strict';
     /*global chrome, console*/
     var clickedEl = null;
+
+    function checkSrc(src) {
+        return src.indexOf('data:image') !== -1 ? false : src.indexOf('?') === -1 ? '?' : '&';
+    }
+
     chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-        var append = "reload=" + Math.random(),
-            imgs,
-            i;
-        switch (request.info) {
-        case "one":
-            append += clickedEl.src.indexOf('?') === -1 ? "?" : "&";
-            clickedEl.src += append;
-            break;
-        case "all":
-            imgs = document.getElementsByTagName("img");
-            i = 0;
-            for (i; i < imgs.length; i += 1) {
-                append += imgs[i].src.indexOf('?') === -1 ? "?" : "&";
-                imgs[i].src += append;
-            }
-            break;
+        var append = 'reload=' + Math.random(),
+            imgs = [],
+            i = 0,
+            res;
+        if (request.info === 'one') {
+            imgs[0] = clickedEl;
+        } else {
+            imgs = document.getElementsByTagName('img');
         }
+        for (i; i < imgs.length; i += 1) {
+            res = checkSrc(imgs[i].src);
+            if (res) {
+                imgs[i].src += res + append;
+            }
+        }
+        append = imgs = clickedEl = res = null;
     });
 
-    document.addEventListener("mousedown", function (event) {
-        if (event.button === 2) {
+    document.addEventListener('mousedown', function (event) {
+        if (event.button === 2 && event.target === 'img') {
             clickedEl = event.target;
         }
     }, true);
