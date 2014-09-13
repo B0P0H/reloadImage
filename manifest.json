@@ -6,7 +6,7 @@
     },
     "manifest_version": 2,
     "homepage_url": "https://github.com/mubaidr/reloadImage",
-    "version": "2.01",
+    "version": "2.1",
     "background": {
         "persistent": true,
         "scripts": ["js/background.js"]
